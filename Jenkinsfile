@@ -3,11 +3,11 @@ node {
         checkout scm
 		
      stage 'Build image'
-        sh "docker-compose -f docker-compose.yml build"
+        bat "docker-compose -f docker-compose.yml build"
         
      stage 'Test image'
-     	sh "docker-compose -f docker-compose.yml up"
+     	bat "docker-compose -f docker-compose.yml up"
      
      stage 'Push image'
-	sh "docker push thertion12/user_management"
+	bat "docker push thertion12/user_management"
 }
