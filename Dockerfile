@@ -1,10 +1,14 @@
-FROM python:3
+FROM python:3.7
+WORKDIR /user-management
+COPY requirement.txt requirement.txt
+# RUN apk update && \
+#     apk add --virtual build-deps gcc musl-dev && \
+#     apk add postgresql-dev && \
+#     rm -rf /var/cache/apk/*
 
-WORKDIR /usr/src/app
-
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
+RUN pip install -r requirement.txt
 COPY . .
+EXPOSE 6000
+CMD [ "python", "-m","src.__init__" ]
 
-CMD [ "python", "data_retrieval.py" ]
+
