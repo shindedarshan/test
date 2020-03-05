@@ -1,17 +1,13 @@
 node {
- 
-	stage 'Checkout' {
-        	checkout scm
-	}
+     stage 'Checkout'
+        checkout scm
 		
-	stage 'Build image' {
-        	sh label: '', 
-		   script: docker-compose build
-	}
+     stage 'Build image'
+        sh "docker-compose -f docker-compose.yml build"
         
-  
-	stage 'Push image' {
-		sh "docker login -u thertion12 -p *Batu_20110656*"
-		sh "docker push thertion12/user_management"
-	}
+     stage 'Test image'
+     	sh "docker-compose -f docker-compose.yml up"
+     
+     stage 'Push image'
+	sh "docker push thertion12/user_management"
 }
