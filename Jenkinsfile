@@ -7,7 +7,6 @@ node {
 	stage 'Build image' {
         	sh label: '', 
 		   script: docker-compose build
-		           docker-compose up
 	}
         
   
