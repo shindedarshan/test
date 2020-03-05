@@ -4,7 +4,8 @@ node {
         checkout scm
 		
     stage 'Build image'
-        sh "docker build -t user-management:latest -f docker-compose.yml ."
+        sh label: '', script: '''docker-compose build
+				 docker-compose up'''
         
   
     stage 'Push image'
